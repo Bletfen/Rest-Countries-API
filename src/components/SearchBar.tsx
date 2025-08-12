@@ -1,11 +1,18 @@
 import { useState } from "react";
 export default function SearchBar({
   setRegionSelector,
+  setSearchInput,
+  searchInput,
 }: {
   setRegionSelector: React.Dispatch<React.SetStateAction<string>>;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  searchInput: string;
 }) {
   const [regions, setRegions] = useState<boolean>(false);
   const regionsArray = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
   return (
     <div
       className="px-[1.6rem] mt-[2.4rem] flex flex-col gap-[4rem]
@@ -30,7 +37,12 @@ export default function SearchBar({
             fill="#B2B2B2"
           />
         </svg>
-        <input type="text" placeholder="Search for a country…" />
+        <input
+          type="text"
+          placeholder="Search for a country…"
+          value={searchInput}
+          onChange={(e) => handleChange(e)}
+        />
       </div>
       <div>
         <div

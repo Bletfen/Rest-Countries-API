@@ -5,10 +5,16 @@ import SearchBar from "../components/SearchBar";
 export default function Country() {
   const [countries, setCoutries] = useState<TCountry[]>([]);
   const [regionSelector, setRegionSelector] = useState<string>("");
-  console.log(countries.map((c) => c.region));
+  const [searchInput, setSearchInput] = useState<string>("");
   const filteredCoutries = countries.filter((country) => {
-    if (regionSelector === "") return true;
-    return country?.region === regionSelector;
+    const regionMatches =
+      regionSelector === "" || country.region === regionSelector;
+
+    const searchMatches =
+      searchInput === "" ||
+      country.name.toLowerCase().includes(searchInput.toLowerCase());
+
+    return regionMatches && searchMatches;
   });
   const baseUrl = "http://localhost:3000/countries";
   useEffect(() => {
@@ -22,7 +28,11 @@ export default function Country() {
   console.log(countries);
   return (
     <div>
-      <SearchBar setRegionSelector={setRegionSelector} />
+      <SearchBar
+        setRegionSelector={setRegionSelector}
+        setSearchInput={setSearchInput}
+        searchInput={searchInput}
+      />
       {filteredCoutries.map((country) => (
         <p>{country.name}</p>
       ))}
