@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import type { TCountry } from "../../type";
+import SearchBar from "../components/SearchBar";
 export default function Country() {
-  const [countries, setCoutries] = useState([]);
+  const [countries, setCoutries] = useState<TCountry[]>([]);
   const baseUrl = "http://localhost:3000/countries";
   useEffect(() => {
     fetchData();
@@ -14,8 +16,9 @@ export default function Country() {
   console.log(countries);
   return (
     <div>
+      <SearchBar />
       {countries.map((country) => (
-        <p>{country.name}</p>
+        <p>{country?.name}</p>
       ))}
     </div>
   );
