@@ -1,5 +1,43 @@
-import React from "react";
-
+import { useNavigate } from "react-router";
 export default function Country() {
-  return <div>Country</div>;
+  const navigate = useNavigate();
+  const goHome = () => {
+    navigate("/");
+  };
+  return (
+    <div className="px-[2.8rem] mt-[4rem]">
+      <button
+        className="flex items-center gap-[0.8rem]
+        xl:gap-[1rem]
+        bg-white shadow-[0_0px_7px_0_rgba(0,0,0,0.29)]
+        pl-[2.4rem] pr-[2.3rem] py-[0.6rem]
+        xl:pl-[3.2rem] pr-[3.9rem] py-[1rem]
+        rounded-[0.6rem]
+        cursor-pointer"
+        onClick={goHome}
+      >
+        <svg
+          width="17"
+          height="12"
+          viewBox="0 0 17 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M5.81802 0.696699L6.87868 1.75736L3.3785 5.25754H16.7428L16.7428 6.74246H3.3785L6.87868 10.2426L5.81802 11.3033L0.514719 6L5.81802 0.696699Z"
+            fill="#111517"
+          />
+        </svg>
+        <span
+          className="
+          text-[#111517] text-[1.4rem]
+          font-[300] leading-[2rem]"
+        >
+          Back
+        </span>
+      </button>
+    </div>
+  );
 }
