@@ -1,9 +1,10 @@
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, Link } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { TCountry } from "../../type";
 export default function Country() {
   const [country, setCountry] = useState<TCountry | null>(null);
+  const [borderCountries, setBorderCountries] = useState<TCountry[]>([]);
   const { countryName } = useParams();
   const navigate = useNavigate();
   const goHome = () => {
@@ -16,14 +17,22 @@ export default function Country() {
     try {
       const response = await axios.get(`http://localhost:3000/countries`);
       const data = response.data;
-      console.log(data);
       const foundCountry = data.find(
         (country: TCountry) => country.name === countryName
       );
       setCountry(foundCountry);
+      if (foundCountry && foundCountry.borders) {
+        const borderCountriesData = data.filter((c: TCountry) =>
+          foundCountry.borders.includes(c.alpha3Code)
+        );
+        setBorderCountries(borderCountriesData);
+      } else {
+        setBorderCountries([]);
+      }
     } catch {
       console.log("country not found");
       setCountry(null);
+      setBorderCountries([]);
     }
   };
 
@@ -62,7 +71,70 @@ export default function Country() {
         </span>
       </button>
 
-      {country ? <h2>{country.name}</h2> : null}
+      {country ? (
+        <div>
+          <img src={country.flags.svg} alt={country.name + "flag"}></img>
+          <div>
+            <h2>{country.name}</h2>
+            <div>
+              <div>
+                <p>
+                  Native Name: <span>{country.nativeName}</span>
+                </p>
+                <p>
+                  Population: <span>{country.population.toLocaleString()}</span>
+                </p>
+                <p>
+                  Region: <span>{country.region}</span>
+                </p>
+                <p>
+                  Sub Region: <span>{country.subregion}</span>
+                </p>
+                <p>
+                  Capital: <span>{country.capital}</span>
+                </p>
+              </div>
+              <div>
+                <p>
+                  Top Level Domain: <span>{country.topLevelDomain}</span>
+                </p>
+                <p>
+                  Currencies:{" "}
+                  {country.currencies?.map((currency, index) => (
+                    <span key={currency.code}>
+                      {currency.name} ({currency.symbol})
+                      {index < country.currencies.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+                </p>
+                <p>
+                  Languages:{" "}
+                  {country.languages?.map((language, index) => (
+                    <span key={language.iso639_1}>
+                      {language.name}
+                      {index < country.languages.length - 1 ? "," : ""}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            </div>
+            <h3>Border Countries:</h3>
+            {borderCountries.length > 0 && (
+              <div className="flex gap-[2rem] flex-wrap">
+                {borderCountries.map((borderCountry) => (
+                  <Link
+                    key={borderCountry.alpha3Code}
+                    to={`/${borderCountry.name}`}
+                    className="cursor-pointer"
+                  >
+                    {borderCountry.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
