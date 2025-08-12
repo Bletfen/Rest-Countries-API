@@ -1,9 +1,32 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import type { TCountry } from "../../type";
 export default function Country() {
+  const [country, setCountry] = useState<TCountry | null>(null);
+  const { countryName } = useParams();
   const navigate = useNavigate();
   const goHome = () => {
     navigate("/");
   };
+  useEffect(() => {
+    fetchData();
+  }, [countryName]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/countries`);
+      const data = response.data;
+      console.log(data);
+      const foundCountry = data.find(
+        (country: TCountry) => country.name === countryName
+      );
+      setCountry(foundCountry);
+    } catch {
+      console.log("country not found");
+      setCountry(null);
+    }
+  };
+
   return (
     <div className="px-[2.8rem] mt-[4rem]">
       <button
@@ -38,6 +61,8 @@ export default function Country() {
           Back
         </span>
       </button>
+
+      {country ? <h2>{country.name}</h2> : null}
     </div>
   );
 }

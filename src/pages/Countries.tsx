@@ -26,7 +26,6 @@ export default function Country() {
     const data = response.data;
     setCoutries(data);
   };
-  console.log(countries);
   return (
     <div>
       <SearchBar
