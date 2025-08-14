@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import type { TCountry } from "../../type";
 import dataBase from "../../db.json";
+import spinningEarth from "../../public/design/151.gif";
 export default function Country() {
   const [country, setCountry] = useState<TCountry | null>(null);
   const [borderCountries, setBorderCountries] = useState<TCountry[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const { countryName } = useParams();
   const navigate = useNavigate();
   const localCountries = dataBase.countries as TCountry[];
@@ -23,6 +25,7 @@ export default function Country() {
         (country: TCountry) => country.name === countryName
       );
       setCountry(foundCountry);
+      setLoading(false);
       if (foundCountry && foundCountry.borders) {
         const borderCountriesData = data.filter((c: TCountry) =>
           foundCountry.borders.includes(c.alpha3Code)
@@ -32,6 +35,7 @@ export default function Country() {
         setBorderCountries([]);
       }
     } catch {
+      setLoading(false);
       const localFoundCountry = localCountries.find(
         (country) => country.name === countryName
       );
@@ -85,7 +89,15 @@ export default function Country() {
         </span>
       </button>
 
-      {country ? (
+      {loading ? (
+        <div
+          className="flex flex-col justify-center min-h-screen items-center
+          gap-[1.6rem]"
+        >
+          <img src={spinningEarth} alt="Earth-GIF" />
+          <p className="text-[2.4rem] font-[800]">Loading {countryName}</p>
+        </div>
+      ) : country ? (
         <div className="mt-[6.4rem]">
           <div className="max-w-[56rem]">
             <img

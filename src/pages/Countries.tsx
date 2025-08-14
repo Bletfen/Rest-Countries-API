@@ -4,6 +4,7 @@ import type { TCountry } from "../../type";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router";
 import dataBase from "../../db.json";
+import spiningEarth from "../../public/design/151.gif";
 export default function Country() {
   const [countries, setCoutries] = useState<TCountry[]>([]);
   const [regionSelector, setRegionSelector] = useState<string>("");
@@ -41,12 +42,8 @@ export default function Country() {
           className="flex flex-col justify-center min-h-screen items-center
           gap-[1.6rem]"
         >
+          <img src={spiningEarth} alt="Earth-GIF" />
           <p className="text-[2.4rem] font-[800]">Loading Countries</p>
-          <div
-            className="w-12 h-12 border-2 
-            border-black border-dashed 
-            rounded-full animate-spin"
-          ></div>
         </div>
       ) : (
         <div>
