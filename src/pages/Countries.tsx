@@ -36,7 +36,7 @@ export default function Country() {
     }
   };
   return (
-    <>
+    <div>
       {loading ? (
         <div
           className="flex flex-col justify-center 
@@ -64,7 +64,8 @@ export default function Country() {
                 to={country.name}
                 className="block mt-[3.2rem]
                 bg-white shadow-[0_7px_2px_0_rgba(0,0,0,0.03)]
-                rounded-[0.5rem] w-[26.4rem] xl:mt-[4.8rem]"
+                rounded-[0.5rem] w-[26.4rem] xl:mt-[4.8rem]
+                dark:bg-[#2b3b44] transition duration-300"
               >
                 <div>
                   <img
@@ -73,8 +74,8 @@ export default function Country() {
                     className="rounded-t-[0.5rem]"
                   />
                   <div
-                    className="mt-[2.4rem] pl-[2.4rem]
-                    pb-[4.6rem] text-[#111517]"
+                    className="mt-[2.4rem] px-[2.4rem]
+                    pb-[4.6rem] text-[#111517] dark:text-white"
                   >
                     <h1
                       className="text-[1.8rem] font-[800] leading-[2.6rem]
@@ -109,6 +110,6 @@ export default function Country() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

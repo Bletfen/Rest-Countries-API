@@ -8,7 +8,8 @@ export default function Header() {
   return (
     <div
       className="bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.06)]
-      py-[3rem] px-[1.6rem]
+      py-[3rem] px-[1.6rem] transition duration-300
+      dark:bg-[#2b3844]
       "
     >
       <div
@@ -18,7 +19,7 @@ export default function Header() {
         <p
           className="text-[1.4rem] font-[800]
           leading-[2rem] text-[#111517]
-          xl:text-[2.4rem]"
+          xl:text-[2.4rem] dark:text-white"
         >
           Where in the world?
         </p>
@@ -64,7 +65,7 @@ export default function Header() {
           )}
           <p
             className="text-[1.2rem] font-[600]
-            xl:text-[1.6rem]"
+            xl:text-[1.6rem] dark:text-white"
           >
             Dark Mode
           </p>

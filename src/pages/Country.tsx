@@ -65,7 +65,7 @@ export default function Country() {
         xl:pl-[3.2rem] pr-[3.9rem] py-[1rem]
         rounded-[0.6rem]
         cursor-pointer
-        "
+        dark:bg-[#2b3b44] transition duration-300"
         onClick={goHome}
       >
         <svg
@@ -74,18 +74,19 @@ export default function Country() {
           viewBox="0 0 17 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="fill-[#111517] dark:fill-white"
         >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
             d="M5.81802 0.696699L6.87868 1.75736L3.3785 5.25754H16.7428L16.7428 6.74246H3.3785L6.87868 10.2426L5.81802 11.3033L0.514719 6L5.81802 0.696699Z"
-            fill="#111517"
           />
         </svg>
         <span
           className="
           text-[#111517] text-[1.4rem]
-          font-[300] leading-[2rem]"
+          font-[300] leading-[2rem]
+          dark:text-white"
         >
           Back
         </span>
@@ -116,7 +117,7 @@ export default function Country() {
           </div>
           <div
             className="text-[111517]
-            xl:max-w-[59.8rem]"
+            xl:max-w-[59.8rem] dark:text-white"
           >
             <h2
               className="text-[2.2rem] font-[800]
@@ -185,11 +186,11 @@ export default function Country() {
             </div>
             <div
               className="flex flex-col gap-[3.4rem] xl:flex-row
-            xl:gap-[1.6] xl:max-w-full"
+              xl:gap-[1.6] xl:max-w-full"
             >
               <h3
                 className="text-[1.6rem] font-[600] leading-[2.4rem]
-                text-[#111517] shrink-0"
+                text-[#111517] shrink-0 dark:text-white"
               >
                 Border Countries:
               </h3>
@@ -206,7 +207,8 @@ export default function Country() {
                       rounded-[0.5rem]
                       bg-white shadow-[0_0_4px_1px_rgba(0,0,0,0.10)]
                       text-[1.2rem] font-[300] text-[#111517]
-                      xl:text-[1.4rem]"
+                      xl:text-[1.4rem] dark:text-white
+                      dark:bg-[#2b3b44] transition duration-300"
                     >
                       {borderCountry.name}
                     </Link>
