@@ -17,7 +17,8 @@ export default function SearchBar({
     <div
       className="px-[1.6rem] mt-[2.4rem] flex flex-col gap-[4rem]
         text-[1.2rem] xl:text-[1.4rem]
-        font-[400] leading-[2rem]"
+        font-[400] leading-[2rem]
+        "
     >
       <div
         className="flex gap-[2.6rem]

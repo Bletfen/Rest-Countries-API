@@ -4,7 +4,7 @@ import type { TCountry } from "../../type";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router";
 import dataBase from "../../db.json";
-import spiningEarth from "../../public/design/151.gif";
+import spinningEarth from "../../public/design/151.gif";
 export default function Country() {
   const [countries, setCoutries] = useState<TCountry[]>([]);
   const [regionSelector, setRegionSelector] = useState<string>("");
@@ -39,10 +39,11 @@ export default function Country() {
     <>
       {loading ? (
         <div
-          className="flex flex-col justify-center min-h-screen items-center
+          className="flex flex-col justify-center 
+          min-h-screen items-center
           gap-[1.6rem]"
         >
-          <img src={spiningEarth} alt="Earth-GIF" />
+          <img src={spinningEarth} alt="Earth-GIF" />
           <p className="text-[2.4rem] font-[800]">Loading Countries</p>
         </div>
       ) : (
@@ -52,14 +53,18 @@ export default function Country() {
             setSearchInput={setSearchInput}
             searchInput={searchInput}
           />
-          <div className="px-[5.5rem]">
+          <div
+            className="px-[5.5rem] grid justify-center gap-[4rem] 
+            xl:grid-cols-4 max-w-[144rem] xl:px-[8rem] xl:gap-[7.5rem]
+            xl:mx-auto"
+          >
             {filteredCoutries.map((country) => (
               <Link
                 key={country.alpha3Code}
                 to={country.name}
                 className="block mt-[3.2rem]
                 bg-white shadow-[0_7px_2px_0_rgba(0,0,0,0.03)]
-                rounded-[0.5rem]"
+                rounded-[0.5rem] w-[26.4rem] xl:mt-[4.8rem]"
               >
                 <div>
                   <img
