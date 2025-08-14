@@ -1,69 +1,76 @@
-# React + TypeScript + Vite
+Rest Countries API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application built with React and Tailwind CSS that displays a list of countries using data from the Rest Countries API.
+It allows users to search for countries, filter them by region, and view detailed information about each country. The application also supports a dark/light mode with theme persistence.
 
-Currently, two official plugins are available:
+In addition to fetching data from the public API, the project was also set up to work with json-server for development purposes. It can run with a local JSON database, and a loading state is implemented to handle data fetching delays from either source.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
 
-## Expanding the ESLint configuration
+Display a list of countries fetched from the Rest Countries API or a local json-server database
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Search functionality by country name
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Filter countries by region
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Detailed country page with:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Official name
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Population
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Region and subregion
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Capital city
+
+National flag
+
+Border countries
+
+Dark and light theme
+
+Loading indicator for data fetching
+
+Fully responsive design for mobile, tablet, and desktop
+
+Technologies Used
+
+React – component-based UI
+
+React Router – client-side routing
+
+Tailwind CSS – styling framework
+
+json-server – primary data source
+
+local-database.json – local database for development
+
+Vite – development and build tool
+
+Installation and Setup
+
+Clone the repository:
+
+git clone https://github.com/Bletfen/Rest-Countries-API.git
+cd Rest-Countries-API
+
+Install dependencies:
+
+npm install
+
+(Optional) Start json-server for local development:
+
+npx json-server --watch data.json --port 3001
+
+Run the project in development mode:
+
+npm run dev
+
+Build for production:
+
+    npm run build
+
+Live Demo
+
+You can view the live version of the project here:
+[Live Site](https://rest-countries-api-eta-blue.vercel.app/)
