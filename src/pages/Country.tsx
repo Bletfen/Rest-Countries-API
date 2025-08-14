@@ -2,11 +2,13 @@ import { useNavigate, useParams, Link } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { TCountry } from "../../type";
+import dataBase from "../../db.json";
 export default function Country() {
   const [country, setCountry] = useState<TCountry | null>(null);
   const [borderCountries, setBorderCountries] = useState<TCountry[]>([]);
   const { countryName } = useParams();
   const navigate = useNavigate();
+  const localCountries = dataBase.countries as TCountry[];
   const goHome = () => {
     navigate("/");
   };
@@ -30,14 +32,26 @@ export default function Country() {
         setBorderCountries([]);
       }
     } catch {
-      console.log("country not found");
-      setCountry(null);
-      setBorderCountries([]);
+      const localFoundCountry = localCountries.find(
+        (country) => country.name === countryName
+      );
+      setCountry(localFoundCountry ?? null);
+      setBorderCountries(
+        localFoundCountry?.borders
+          ? localCountries.filter(
+              (c) =>
+                c.alpha3Code && localFoundCountry.borders.includes(c.alpha3Code)
+            )
+          : []
+      );
     }
   };
 
   return (
-    <div className="px-[2.8rem] mt-[4rem]">
+    <div
+      className="px-[2.8rem] mt-[4rem]
+      pb-[6rem]"
+    >
       <button
         className="flex items-center gap-[0.8rem]
         xl:gap-[1rem]
@@ -72,36 +86,58 @@ export default function Country() {
       </button>
 
       {country ? (
-        <div>
-          <img src={country.flags.svg} alt={country.name + "flag"}></img>
-          <div>
-            <h2>{country.name}</h2>
-            <div>
-              <div>
+        <div className="mt-[6.4rem]">
+          <div className="max-w-[56rem]">
+            <img
+              src={country.flags.svg}
+              alt={country.name + "flag"}
+              className="rounded-[0.5rem]
+            bg-[#808080] shadow-[0_0_8px_2px_rgba(0,0,0,0.3)]
+            "
+            ></img>
+          </div>
+          <div className="text-[111517]">
+            <h2
+              className="text-[2.2rem] font-[800]
+              xl:text-[3.2rem] mt-[4.4rem] mb-[1.6rem]"
+            >
+              {country.name}
+            </h2>
+            <div
+              className="text-[1.4rem] font-[600] leading-[3.2rem]
+              xl:text-[1.6rem]"
+            >
+              <div className="mb-[3.2rem]">
                 <p>
-                  Native Name: <span>{country.nativeName}</span>
+                  Native Name:{" "}
+                  <span className="font-[300]">{country.nativeName}</span>
                 </p>
                 <p>
-                  Population: <span>{country.population.toLocaleString()}</span>
+                  Population:{" "}
+                  <span className="font-[300]">
+                    {country.population.toLocaleString()}
+                  </span>
                 </p>
                 <p>
-                  Region: <span>{country.region}</span>
+                  Region: <span className="font-[300]">{country.region}</span>
                 </p>
                 <p>
-                  Sub Region: <span>{country.subregion}</span>
+                  Sub Region:{" "}
+                  <span className="font-[300]">{country.subregion}</span>
                 </p>
                 <p>
-                  Capital: <span>{country.capital}</span>
+                  Capital: <span className="font-[300]">{country.capital}</span>
                 </p>
               </div>
-              <div>
+              <div className="mb-[3.2rem]">
                 <p>
-                  Top Level Domain: <span>{country.topLevelDomain}</span>
+                  Top Level Domain:{" "}
+                  <span className="font-[300]">{country.topLevelDomain}</span>
                 </p>
                 <p>
                   Currencies:{" "}
                   {country.currencies?.map((currency, index) => (
-                    <span key={currency.code}>
+                    <span key={currency.code} className="font-[300]">
                       {currency.name} ({currency.symbol})
                       {index < country.currencies.length - 1 ? ", " : ""}
                     </span>
@@ -110,28 +146,41 @@ export default function Country() {
                 <p>
                   Languages:{" "}
                   {country.languages?.map((language, index) => (
-                    <span key={language.iso639_1}>
+                    <span key={language.iso639_1} className="font-[300]">
                       {language.name}
-                      {index < country.languages.length - 1 ? "," : ""}
+                      {index < country.languages.length - 1 ? ", " : ""}
                     </span>
                   ))}
                 </p>
               </div>
             </div>
-            <h3>Border Countries:</h3>
-            {borderCountries.length > 0 && (
-              <div className="flex gap-[2rem] flex-wrap">
-                {borderCountries.map((borderCountry) => (
-                  <Link
-                    key={borderCountry.alpha3Code}
-                    to={`/${borderCountry.name}`}
-                    className="cursor-pointer"
-                  >
-                    {borderCountry.name}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-col gap-[3.4rem]">
+              <h3
+                className="text-[1.6rem] font-[600] leading-[2.4rem]
+                text-[#111517]"
+              >
+                Border Countries:
+              </h3>
+              {borderCountries.length > 0 && (
+                <div
+                  className="flex gap-[1rem] flex-wrap
+                  "
+                >
+                  {borderCountries.map((borderCountry) => (
+                    <Link
+                      key={borderCountry.alpha3Code}
+                      to={`/${borderCountry.name}`}
+                      className="px-[1.5rem] py-[0.6rem]
+                      rounded-[0.5rem]
+                      bg-white shadow-[0_0_4px_1px_rgba(0,0,0,0.10)]
+                      text-[1.2rem] font-[300] text-[#111517]"
+                    >
+                      {borderCountry.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ) : null}
