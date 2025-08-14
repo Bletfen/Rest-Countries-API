@@ -8,3 +8,5 @@ html {
 body {
   font-family: "Nunito Sans", sans-serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
