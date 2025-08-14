@@ -18,12 +18,16 @@ export default function SearchBar({
       className="px-[1.6rem] mt-[2.4rem] flex flex-col gap-[4rem]
         text-[1.2rem] xl:text-[1.4rem]
         font-[400] leading-[2rem]
-        "
+        xl:flex-row xl:justify-between
+        max-w-[144rem] xl:mx-auto
+        xl:p-[unset] xl:px-[8rem]
+        xl:mt-[4.8rem]"
     >
       <div
         className="flex gap-[2.6rem]
-        bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.06)]
-        py-[1.6rem] px-[3.2rem] rounded-[0.5rem]"
+        bg-white shadow-[0_2px_9px_0_rgba(0,0,0,0.05)]
+        py-[1.6rem] px-[3.2rem] rounded-[0.5rem]
+        xl:w-[48rem]"
       >
         <svg
           width="16"
@@ -43,16 +47,17 @@ export default function SearchBar({
           type="text"
           placeholder="Search for a country…"
           value={searchInput}
-          className="text-[#c4c4c4] outline-none w-full"
+          className="text-[#111517] outline-none w-full"
           onChange={(e) => handleChange(e)}
         />
       </div>
       <div className="text-[#111517] max-w-[20rem] relative">
         <div
           className="flex 
-            justify-between bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.06)]
+            justify-between bg-white shadow-[0_2px_9px_0_rgba(0,0,0,0.05)]
             py-[1.4rem] pl-[2.4rem] pr-[1.9rem]
-            items-center rounded-[0.5rem] cursor-[pointer]"
+            items-center rounded-[0.5rem] cursor-[pointer]
+            xl:w-[20rem]"
           onClick={() => setRegions((prev) => !prev)}
         >
           <p>Filter by Region</p>
@@ -75,13 +80,15 @@ export default function SearchBar({
           <div
             className="py-[1.6rem] pl-[2.4rem]
             bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.06)]
-            absolute w-[20rem] top-23 rounded-[0.5rem]"
+            absolute w-[20rem] top-23 rounded-[0.5rem]
+            "
           >
             <ul>
               {regionsArray.map((region) => (
                 <li
                   key={region}
-                  className="cursor-pointer leading-[1.6rem] mb-[0.8rem]"
+                  className="cursor-pointer leading-[1.6rem] mb-[0.8rem]
+                  "
                   onClick={() => {
                     setRegionSelector(region);
                     setRegions(false);

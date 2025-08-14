@@ -54,7 +54,8 @@ export default function Country() {
   return (
     <div
       className="px-[2.8rem] mt-[4rem]
-      pb-[6rem]"
+      pb-[6rem] max-w-[144rem] xl:px-[8rem]
+      xl:mx-auto"
     >
       <button
         className="flex items-center gap-[0.8rem]
@@ -63,7 +64,8 @@ export default function Country() {
         pl-[2.4rem] pr-[2.3rem] py-[0.6rem]
         xl:pl-[3.2rem] pr-[3.9rem] py-[1rem]
         rounded-[0.6rem]
-        cursor-pointer"
+        cursor-pointer
+        "
         onClick={goHome}
       >
         <svg
@@ -98,28 +100,40 @@ export default function Country() {
           <p className="text-[2.4rem] font-[800]">Loading {countryName}</p>
         </div>
       ) : country ? (
-        <div className="mt-[6.4rem]">
+        <div
+          className="mt-[6.4rem] xl:mt-[8rem]
+          xl:flex xl:items-center
+          xl:gap-[12rem]"
+        >
           <div className="max-w-[56rem]">
             <img
               src={country.flags.svg}
               alt={country.name + "flag"}
               className="rounded-[0.5rem]
-            bg-[#808080] shadow-[0_0_8px_2px_rgba(0,0,0,0.3)]
-            "
+              bg-[#808080] shadow-[0_0_8px_2px_rgba(0,0,0,0.3)]
+              "
             ></img>
           </div>
-          <div className="text-[111517]">
+          <div
+            className="text-[111517]
+            xl:max-w-[59.8rem]"
+          >
             <h2
               className="text-[2.2rem] font-[800]
-              xl:text-[3.2rem] mt-[4.4rem] mb-[1.6rem]"
+              xl:text-[3.2rem] mt-[4.4rem] mb-[1.6rem]
+              xl:mt-[unset] xl:mb-[2.3rem]"
             >
               {country.name}
             </h2>
             <div
               className="text-[1.4rem] font-[600] leading-[3.2rem]
-              xl:text-[1.6rem]"
+              xl:text-[1.6rem] xl:flex xl:justify-between
+              xl:mb-[6.8rem]"
             >
-              <div className="mb-[3.2rem]">
+              <div
+                className="mb-[3.2rem]
+                xl:mb-[unset] xl:mr-[14.1rem]"
+              >
                 <p>
                   Native Name:{" "}
                   <span className="font-[300]">{country.nativeName}</span>
@@ -141,7 +155,10 @@ export default function Country() {
                   Capital: <span className="font-[300]">{country.capital}</span>
                 </p>
               </div>
-              <div className="mb-[3.2rem]">
+              <div
+                className="mb-[3.2rem]
+                xl:mb-[unset]"
+              >
                 <p>
                   Top Level Domain:{" "}
                   <span className="font-[300]">{country.topLevelDomain}</span>
@@ -166,10 +183,13 @@ export default function Country() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-[3.4rem]">
+            <div
+              className="flex flex-col gap-[3.4rem] xl:flex-row
+            xl:gap-[1.6] xl:max-w-full"
+            >
               <h3
                 className="text-[1.6rem] font-[600] leading-[2.4rem]
-                text-[#111517]"
+                text-[#111517] shrink-0"
               >
                 Border Countries:
               </h3>
@@ -185,7 +205,8 @@ export default function Country() {
                       className="px-[1.5rem] py-[0.6rem]
                       rounded-[0.5rem]
                       bg-white shadow-[0_0_4px_1px_rgba(0,0,0,0.10)]
-                      text-[1.2rem] font-[300] text-[#111517]"
+                      text-[1.2rem] font-[300] text-[#111517]
+                      xl:text-[1.4rem]"
                     >
                       {borderCountry.name}
                     </Link>
