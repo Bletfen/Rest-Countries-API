@@ -44,7 +44,12 @@ export default function Country() {
           gap-[1.6rem]"
         >
           <img src={spinningEarth} alt="Earth-GIF" />
-          <p className="text-[2.4rem] font-[800]">Loading Countries</p>
+          <p
+            className="text-[2.4rem] font-[800] 
+            text-[#111517] dark:text-white"
+          >
+            Loading Countries
+          </p>
         </div>
       ) : (
         <div>
@@ -68,11 +73,13 @@ export default function Country() {
                 dark:bg-[#2b3b44] transition duration-300"
               >
                 <div>
-                  <img
-                    src={country.flags.svg}
-                    alt="country-img"
-                    className="rounded-t-[0.5rem]"
-                  />
+                  <div className="w-[26.4rem] h-[16rem]">
+                    <img
+                      src={country.flags.svg}
+                      alt="country-img"
+                      className="rounded-t-[0.5rem] w-full h-full object-cover"
+                    />
+                  </div>
                   <div
                     className="mt-[2.4rem] px-[2.4rem]
                     pb-[4.6rem] text-[#111517] dark:text-white"

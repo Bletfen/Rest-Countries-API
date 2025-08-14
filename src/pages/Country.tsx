@@ -98,7 +98,12 @@ export default function Country() {
           gap-[1.6rem]"
         >
           <img src={spinningEarth} alt="Earth-GIF" />
-          <p className="text-[2.4rem] font-[800]">Loading {countryName}</p>
+          <p
+            className="text-[2.4rem] font-[800]
+            text-[#111517] dark:text-white"
+          >
+            Loading {countryName}
+          </p>
         </div>
       ) : country ? (
         <div
