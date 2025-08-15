@@ -52,7 +52,7 @@ export default function Country() {
   };
 
   const goHome = () => {
-    navigate("/");
+    navigate(-1);
   };
 
   return (
