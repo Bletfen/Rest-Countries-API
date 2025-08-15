@@ -51,7 +51,7 @@ export default function Country() {
     }
   };
 
-  const goHome = () => {
+  const goBack = () => {
     navigate(-1);
   };
 
@@ -70,7 +70,7 @@ export default function Country() {
         rounded-[0.6rem]
         cursor-pointer
         dark:bg-[#2b3b44] transition duration-300"
-        onClick={goHome}
+        onClick={goBack}
       >
         <svg
           width="17"
