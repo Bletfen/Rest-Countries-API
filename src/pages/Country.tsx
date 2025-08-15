@@ -195,7 +195,7 @@ export default function Country() {
             </div>
             <div
               className="flex flex-col gap-[3.4rem] xl:flex-row
-              xl:gap-1"
+              xl:gap-6"
             >
               <h3
                 className="text-[1.6rem] font-[600] leading-[2.4rem]
@@ -205,7 +205,7 @@ export default function Country() {
               </h3>
               {borderCountries.length > 0 && (
                 <div
-                  className="flex gap-1rem flex-wrap
+                  className="flex gap-2.5 flex-wrap
                   "
                 >
                   {borderCountries.map((borderCountry) => (
