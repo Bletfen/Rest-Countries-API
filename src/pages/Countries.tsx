@@ -28,11 +28,11 @@ export default function Country() {
     try {
       const response = await axios.get(baseUrl);
       setCoutries(response.data);
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
-      console.log("there is no local json-server at this moment");
       setCoutries(dataBase.countries as TCountry[]);
+      console.log("there is no local json-server at this moment");
+    } finally {
+      setLoading(false);
     }
   };
   return (

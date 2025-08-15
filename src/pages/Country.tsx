@@ -11,13 +11,13 @@ export default function Country() {
   const { countryName } = useParams();
   const navigate = useNavigate();
   const localCountries = dataBase.countries as TCountry[];
-  const goHome = () => {
-    navigate("/");
-  };
+
   useEffect(() => {
     fetchData();
   }, [countryName]);
+
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`http://localhost:3000/countries`);
       const data = response.data;
@@ -25,7 +25,6 @@ export default function Country() {
         (country: TCountry) => country.name === countryName
       );
       setCountry(foundCountry);
-      setLoading(false);
       if (foundCountry && foundCountry.borders) {
         const borderCountriesData = data.filter((c: TCountry) =>
           foundCountry.borders.includes(c.alpha3Code)
@@ -35,7 +34,6 @@ export default function Country() {
         setBorderCountries([]);
       }
     } catch {
-      setLoading(false);
       const localFoundCountry = localCountries.find(
         (country) => country.name === countryName
       );
@@ -48,7 +46,13 @@ export default function Country() {
             )
           : []
       );
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const goHome = () => {
+    navigate("/");
   };
 
   return (
@@ -206,8 +210,8 @@ export default function Country() {
                 >
                   {borderCountries.map((borderCountry) => (
                     <Link
-                      key={borderCountry.alpha3Code}
                       to={`/${borderCountry.name}`}
+                      key={borderCountry.alpha3Code}
                       className="px-[1.5rem] py-[0.6rem]
                       rounded-[0.5rem]
                       bg-white shadow-[0_0_4px_1px_rgba(0,0,0,0.10)]
