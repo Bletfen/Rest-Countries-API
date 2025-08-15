@@ -63,7 +63,7 @@ export default function Country() {
     >
       <button
         className="flex items-center gap-[0.8rem]
-        xl:gap-[1rem]
+        xl:gap-1rem
         bg-white shadow-[0_0px_7px_0_rgba(0,0,0,0.29)]
         pl-[2.4rem] pr-[2.3rem] py-[0.6rem]
         xl:pl-[3.2rem] pr-[3.9rem] py-[1rem]
@@ -195,7 +195,7 @@ export default function Country() {
             </div>
             <div
               className="flex flex-col gap-[3.4rem] xl:flex-row
-              xl:gap-[1.6] xl:max-w-full"
+              xl:gap-1"
             >
               <h3
                 className="text-[1.6rem] font-[600] leading-[2.4rem]
@@ -205,7 +205,7 @@ export default function Country() {
               </h3>
               {borderCountries.length > 0 && (
                 <div
-                  className="flex gap-[1rem] flex-wrap
+                  className="flex gap-1rem flex-wrap
                   "
                 >
                   {borderCountries.map((borderCountry) => (
