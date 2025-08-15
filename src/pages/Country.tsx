@@ -112,8 +112,7 @@ export default function Country() {
       ) : country ? (
         <div
           className="mt-[6.4rem] xl:mt-[8rem]
-          xl:flex xl:items-center
-          xl:gap-[12rem]"
+          xl:flex xl:gap-[12rem]"
         >
           <div className="max-w-[56rem]">
             <img
@@ -126,7 +125,8 @@ export default function Country() {
           </div>
           <div
             className="text-[111517]
-            xl:max-w-[59.8rem] dark:text-white"
+            xl:max-w-[59.8rem] dark:text-white
+            "
           >
             <h2
               className="text-[2.2rem] font-[800]
